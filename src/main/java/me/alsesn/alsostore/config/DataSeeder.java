@@ -18,9 +18,10 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // clear all existing data;
-        productRepository.deleteAll();
-        categoryRepository.deleteAll();
+        if (categoryRepository.count() > 0) {
+            System.out.println("Data already seeded. Skipping seeding");
+            return;
+        }
 
         // create categories
         Category electronics = new Category();
@@ -38,14 +39,14 @@ public class DataSeeder implements CommandLineRunner {
         Product phone = Product.builder()
                 .name("SmartPhone")
                 .description("Latest model smartphone with amazing features.")
-                .imageUrl("")
+                .imageUrl("https://placehold.co/600x400")
                 .price(699.99)
                 .category(electronics)
                 .build();
         Product laptop = Product.builder()
                 .name("Laptop")
                 .description("High-performance laptop for work and play.")
-                .imageUrl("")
+                .imageUrl("https://placehold.co/600x400")
                 .price(999.99)
                 .category(electronics)
                 .build();
@@ -53,7 +54,7 @@ public class DataSeeder implements CommandLineRunner {
         Product jacket = Product.builder()
                 .name("Winter Jacket")
                 .description("Warm and cozy jacket for winter.")
-                .imageUrl("")
+                .imageUrl("https://placehold.co/600x400")
                 .price(129.99)
                 .category(clothing)
                 .build();
@@ -61,7 +62,7 @@ public class DataSeeder implements CommandLineRunner {
         Product blender = Product.builder()
                 .name("Blender")
                 .description("High-speed blender for smoothies and more.")
-                .imageUrl("")
+                .imageUrl("https://placehold.co/600x400")
                 .price(21.99)
                 .category(home)
                 .build();
