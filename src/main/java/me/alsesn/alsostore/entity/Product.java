@@ -1,13 +1,15 @@
 package me.alsesn.alsostore.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Generated;
+import lombok.*;
 
-import java.math.BigDecimal;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +17,7 @@ public class Product {
     private String name;
     private String description;
     private String imageUrl;
-    private BigDecimal price;
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
